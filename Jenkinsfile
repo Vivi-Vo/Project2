@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo '(^_^)'
+                echo '(*_*)'
             }
         }
         stage('Deliver') {
