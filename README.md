@@ -9,6 +9,7 @@ Revature Project2
         - [Database](#database)
         - [API](#api)
     - [Structure](#structure)
+    - [Tooling](#tooling)
 
 <!-- /TOC -->
 
@@ -81,3 +82,15 @@ Revature Project2
     - contains scripts for the use of the CI for the project
 - [docs](docs/)
     - will house all documentation for the project
+
+
+## Tooling
+Project Management Tooling is described below
+
+*Source Control* : [Github](https://github.com/RevatureProject2/Project2)
+
+*Task Tracking* : [Trello](https://trello.com/b/eGLJMc6X/project-2)
+
+*Communication* : [Slack](https://1807july09.slack.com/messages/GC87B4VK9)
+
+*Design / Planning* : [TBA]()
