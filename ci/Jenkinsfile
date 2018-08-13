@@ -3,7 +3,12 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        echo '(>^_^)>'
+        echo '(>^_^<)'
+        sh 'pm2 stop testing-frontend'
+        dir('./frontend') {
+          sh 'npm install --no-audit'
+          sh 'npm run build'
+        }
       }
     }
     stage('Test') {
@@ -14,6 +19,16 @@ pipeline {
     stage('Deliver') {
       steps {
         echo '<(^_^<)'
+        sh 'mkdir -p /www/testing-frontend'
+        sh 'mkdir -p /www/testing-frontend/server/node_modules'
+        
+        sh 'cp -r frontend/dist/frontend /www/testing-frontend/'
+        sh 'cp -r frontend/server /www/testing-frontend/'
+        sh 'cp frontend/ecosystem.config.js /www/testing-frontend/'
+        sh 'cp -r frontend/node_modules/ /www/testing-frontend/server/node_modules'
+        dir('/www/testing-frontend') {
+          sh 'pm2 start ecosystem.config.js --env=production'
+        }
       }
     }
   }
