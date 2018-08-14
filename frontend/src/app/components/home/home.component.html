@@ -7,6 +7,9 @@
                 <div class="form-group">
                     <label for="url">Please Enter A URL: </label>
                     <input type="text" class="form-control" [(ngModel)]="testURL" name="url">
+                    <div class="alert alert-danger" role="alert" *ngIf="invalidURL">
+                        Invalid URL, please try again!
+                    </div>
                     <button class="btn btn-dark" (click)="onSubmitURL()">Test!</button>
                 </div>
             </form>

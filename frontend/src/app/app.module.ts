@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { TestsComponent } from './components/tests/tests.component';
+import { TestComponent } from './components/test/test.component';
 
 @NgModule({
   declarations: [
@@ -15,11 +16,12 @@ import { TestsComponent } from './components/tests/tests.component';
     HeaderComponent,
     HomeComponent,
     TestsComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes);
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
