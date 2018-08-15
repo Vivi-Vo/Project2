@@ -6,6 +6,9 @@ import java.util.Objects;
  * @author Joshua Pressley
  * @version 1.0 */
 @Entity
+@NamedQueries({
+        @NamedQuery(name="RetrieveAllTestNG", query="from models.TestNG")
+})
 @Table(name = "TESTNG")
 public class TestNG
 {
