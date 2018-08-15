@@ -9,22 +9,22 @@ import java.util.ArrayList;
 /** TestNG_Service Class
  * Description: Service class for TestNG methods.
  *      Methods defined using the TestNG Interface.
- *
  * @author Joshua Pressley
  * @version 1.0 */
 public class TestNG_Service implements TNG_Interface
 {
-    //TODO discuss batch id storage location/sequence
-
     @Override
-    public void loadRecords(String json) {
+    public void loadRecords(String json, int batchID) {
         ArrayList<TestNG> records = GsonCreateList.createListFromJSON(json);
-        for (TestNG test: records) { new TestNG_DAO().insertTestNG(test); }
+        for (TestNG test: records) {
+            test.setBatchID(batchID);
+            new TestNG_DAO().insertTestNG(test);
+        }//end for
     }//end loadRecords()
 
     @Override
-    public String getRecordsCurrent() {
-        ArrayList<TestNG> records = new TestNG_DAO().getCurrentRecords();
+    public String getRecordsCurrent(int batchID) {
+        ArrayList<TestNG> records = new TestNG_DAO().getCurrentRecords(batchID);
         return GsonCreateString.createStringTestNG(records);
     }//end getCurrentRecords()
 
