@@ -1,18 +1,20 @@
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
+    <div class="row">
+        <div class="col-md-4">
             <h1>Welcome!</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo, unde. Architecto, tempora facere porro temporibus rem ipsam, vero id dolorum laborum molestiae, quisquam autem totam veritatis fugiat placeat repellat praesentium?</p>
             <form>
                 <div class="form-group">
-                    <label for="url">Please Enter A URL: </label>
-                    <input type="text" class="form-control" [(ngModel)]="testURL" name="url">
-                    <div class="alert alert-danger" role="alert" *ngIf="invalidURL">
-                        Invalid URL, please try again!
-                    </div>
-                    <button class="btn btn-dark" (click)="onSubmitURL()">Test!</button>
+                    <button class="btn btn-dark btn-lg">Test!</button>
                 </div>
             </form>
+        </div>
+        <div class="col-md-8">
+            <app-cucumber-test></app-cucumber-test>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <app-ngtest-test></app-ngtest-test>
         </div>
     </div>
 </div>

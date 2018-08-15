@@ -1,4 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { TestService } from '../services/test-service.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -10,16 +12,14 @@ export class HomeComponent implements OnInit {
 
     testURL: string;
     invalidURL: boolean;
-    private urlRegex: RegExp = new RegExp(/[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/);
 
-    constructor() {}
+    constructor(public testService: TestService, private router: Router) {}
 
     ngOnInit() {}
 
-    onSubmitURL() {
-        this.invalidURL = this.testURL.match(this.urlRegex) == null;
-        this.testInit.emit(this.testURL);
-        console.log(this.testURL);    // TODO: run tests
+
+    // tslint:disable-next-line:use-life-cycle-interface
+    ngOnDestroy(): void {
     }
 
 }

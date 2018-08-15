@@ -5,15 +5,15 @@ import { TestsComponent } from '../components/tests/tests.component';
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'app-home',
+        redirectTo: 'home',
         pathMatch: 'full'
     },
     {
-        path: 'app-home',
+        path: 'home',
         component: HomeComponent
     },
     {
-        path: 'app-tests',
+        path: 'tests',
         component: TestsComponent
     }
 ];

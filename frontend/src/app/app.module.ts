@@ -9,6 +9,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { TestsComponent } from './components/tests/tests.component';
 import { TestComponent } from './components/test/test.component';
+import { CucumberTestComponent } from './components/cucumber-test/cucumber-test.component';
+import { NgtestTestComponent } from './components/ngtest-test/ngtest-test.component';
+import { StacktracePipe } from './components/stacktrace.pipe';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,9 @@ import { TestComponent } from './components/test/test.component';
     HomeComponent,
     TestsComponent,
     TestComponent,
+    CucumberTestComponent,
+    NgtestTestComponent,
+    StacktracePipe,
   ],
   imports: [
     BrowserModule,

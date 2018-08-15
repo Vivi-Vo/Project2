@@ -5,7 +5,7 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item" [ngClass]="{ active: page==='home'}">
                 <a class="nav-link"
-                    routerLink="app-home"
+                    routerLink="home"
                     (click)="switchPage('home')">
                     Home
                     <span *ngIf="page=='home'" class="sr-only">(current)</span>
@@ -13,7 +13,7 @@
             </li>
             <li class="nav-item" [ngClass]="{ active: page==='tests'}">
                 <a class="nav-link"
-                    routerLink="app-tests"
+                    routerLink="tests"
                     (click)="switchPage('tests')">
                     Tests
                     <span *ngIf="page=='tests'" class="sr-only">(current)</span>
