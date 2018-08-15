@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
@@ -36,5 +37,10 @@ public class LoginPageTests {
 		} catch (IOException e) {
 			Assert.fail("Unable to run test, check locator.properties file");
 		}
+	}
+	
+	@AfterSuite
+	public static void closeDriver() {
+		driver.quit();
 	}
 }
