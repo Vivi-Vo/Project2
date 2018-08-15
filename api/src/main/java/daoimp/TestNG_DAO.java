@@ -1,5 +1,4 @@
-package DAO;
-
+package daoimp;
 import Util.HibernateUtil;
 import model.TestNG;
 import org.hibernate.HibernateException;
