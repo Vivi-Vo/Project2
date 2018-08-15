@@ -12,14 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import models.TestNG;
+import service.TestNG_Service;
 
 public class TestDelegate {
     public static void requestSubmit(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
         String id = req.getRequestURI().substring(req.getContextPath().length()+1);
+
         BufferedReader req_json = req.getReader();
         List<TestNG> req_obj = new ArrayList<TestNG>();
 
-        req_obj = gsonParser(req_json);
+        req_obj = utils.GsonCreateList(req_json);
 
         while(id.indexOf("/") > 0)
             id = id.substring(0, id.indexOf("/"));
@@ -31,16 +33,17 @@ public class TestDelegate {
                 singleTest(req.getMethod(), id);
         }
     }
-    public static void allTest(String method, String req_obj){
+    public static void allTest(String method, List<TestNG> req_obj){
+    	TestNG_Service service = new TestNG_Service();
         switch(method){
             case "GET":
-                getAllRecords();
+                service.getAllRecords();
                 break;
             case "PUT":
                 updateRecords(req_obj);
                 break;
             case "POST":
-                loadRecords(req_obj);
+                service.loadRecords(req_obj);
                 break;
             case "DELETE":
                 deleteRecords();
@@ -48,24 +51,22 @@ public class TestDelegate {
         }
     }
     public static void singleTest(String method, String req_obj){
+    	TestNG_Service service = new TestNG_Service();
+
         switch(method){
             case "GET":
-                getRecordsCurrent();
+            	service.getRecordsCurrent();
                 break;
             case "PUT":
+            	// not implemented
                 break;
             case "POST":
+            	// not implemented
                 break;
             case "DELETE":
-                deleteRecords();
+                service.deleteRecords();
                 break;
         }
     }
 
-    public static ArrayList<TestNG> gsonParser(String json){
-        Gson gson = new Gson();
-        List<TestNG> records = new ArrayList<TestNG>();
-        TestNG record = gson.fromJson(json, TestNG.class);
-        return record;
-    }
 }
