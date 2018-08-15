@@ -104,6 +104,20 @@ public class TestNG
         this.stackTrace = stackTrace;
     }//end constructor
 
+    /** Constructor - All Fields Except recordID*/
+    public TestNG(int batchID, String initiatedBy, String status, String signature, String name,
+                  int duration_ms, String startTime, String finishTime) {
+        super();
+        this.batchID = batchID;
+        this.initiatedBy = initiatedBy;
+        this.status = status;
+        this.signature = signature;
+        this.name = name;
+        this.duration_ms = duration_ms;
+        this.startTime = startTime;
+        this.finishTime = finishTime;
+    }//end constructor
+
     //----------------------------------------------
     //Getter and Setter
     //----------------------------------------------

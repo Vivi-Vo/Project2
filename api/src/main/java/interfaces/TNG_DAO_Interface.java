@@ -12,7 +12,7 @@ public interface TNG_DAO_Interface {
     /** Gets all TestNG records */
     ArrayList<TestNG> getAllRecords();
     /** Gets more current TestNG records */
-    ArrayList<TestNG> getCurrentRecords();
+    ArrayList<TestNG> getCurrentRecords(int batchID);
     /** Update record --NOT IMPLEMENTED */
     void updateTestNG(TestNG record);
     /** Delete record --NOT IMPLEMENTED */
