@@ -13,15 +13,26 @@ import com.google.gson.Gson;
 
 import models.TestNG;
 import service.TestNG_Service;
+import utils.GsonCreateList;
 
 public class TestDelegate {
     public static void requestSubmit(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+ 
         String id = req.getRequestURI().substring(req.getContextPath().length()+1);
-
         BufferedReader req_json = req.getReader();
-        List<TestNG> req_obj = new ArrayList<TestNG>();
+        
+        StringBuilder sb = new StringBuilder();
+//        String status_code = req_json.toString();
+        while(req_json.readLine() != null){
+            sb.append(req_json);
+        }
 
-        req_obj = utils.GsonCreateList(req_json);
+        String record_json = sb.toString();
+        Gson gson = new Gson();
+        int status = gson.fromJson(record_json, Integer.class);
+
+        List<TestNG> req_obj = new ArrayList<TestNG>();
+        req_obj = GsonCreateList(req_json);
 
         while(id.indexOf("/") > 0)
             id = id.substring(0, id.indexOf("/"));
@@ -46,7 +57,7 @@ public class TestDelegate {
                 service.loadRecords(req_obj);
                 break;
             case "DELETE":
-                deleteRecords();
+                service.deleteRecords();
                 break;
         }
     }
@@ -56,12 +67,6 @@ public class TestDelegate {
         switch(method){
             case "GET":
             	service.getRecordsCurrent();
-                break;
-            case "PUT":
-            	// not implemented
-                break;
-            case "POST":
-            	// not implemented
                 break;
             case "DELETE":
                 service.deleteRecords();
