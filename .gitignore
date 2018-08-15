@@ -59,6 +59,7 @@ frontend/node_modules
 *.sublime-workspace
 
 # IDE - VSCode
+.vscode
 *.vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
