@@ -17,4 +17,6 @@ public interface TNG_DAO_Interface {
     void updateTestNG(TestNG record);
     /** Delete record --NOT IMPLEMENTED */
     void deleteTestNG(TestNG record);
+    /** Get a single test */
+    TestNG getTest(int testID);
 }//end interface TNG_DAO_Interface

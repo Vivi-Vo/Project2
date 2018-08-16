@@ -15,4 +15,6 @@ public interface TNG_Interface {
     void updateRecords(String json);
     /** Delete record --NOT IMPLEMENTED */
     void deleteRecords(String json);
+    /** Get a single test */
+    String getTest(int testID);
 }//end interface TNG_Interface

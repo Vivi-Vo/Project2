@@ -22,6 +22,8 @@ public class Batch
     @Column(name = "STATUS", nullable = false, precision = 10)
     private int passFail;
 
+    //---------------------------------------
+
     /** Constructor- No Arguments */
     public Batch() { super(); }
 

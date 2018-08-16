@@ -16,9 +16,15 @@ public class GsonCreateString
         return null;
     }//end createStringTestNG()
 
-    /** Creates JSON string of TestNG records. */
+    /** Creates JSON string of Batch records. */
     public static String createStringBatch(ArrayList<Batch> records) {
         if (records != null) return new Gson().toJson(records);
         return null;
     }//end createStringBatch()
+
+    /** Creates JSON string of a TestNG record. */
+    public static String createTest(TestNG record) {
+        if (record != null) return new Gson().toJson(record);
+        return null;
+    }//end createBatch()
 }//end class GsonCreateString

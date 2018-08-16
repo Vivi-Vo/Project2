@@ -38,6 +38,25 @@ public class TestNG_DAO implements TNG_DAO_Interface
         return new ArrayList<>(resultList);
     }//end getRecords()
 
+    /** Get a single test
+     * @param testID test id */
+    @Override
+    public TestNG getTest(int testID) {
+        Session session = utils.HibernateUtil.getSession().openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<TestNG> criteria = builder.createQuery(TestNG.class);
+        Root<TestNG> root = criteria.from(TestNG.class);
+        criteria.select(root);
+        criteria.where(builder.equal(root.get("recordID"), testID));
+        List<TestNG> resultList = session.createQuery(criteria).getResultList();
+        return new ArrayList<>(resultList).get(0);
+    }//end getTest()
+
+    /** NOT IMPLEMENTED*/
+    @Override
     public void updateTestNG(TestNG record) { System.out.println("Not Implemented"); }
+
+    /** NOT IMPLEMENTED*/
+    @Override
     public void deleteTestNG(TestNG record) { System.out.println("Not Implemented"); }
 }//end class TestNG_DAO

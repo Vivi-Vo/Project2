@@ -1,6 +1,5 @@
 package interfaces;
 import models.Batch;
-
 import java.util.ArrayList;
 
 /** Interface methods for Batch_DAO
@@ -15,4 +14,8 @@ public interface Batch_DAO_Interface {
     ArrayList<Batch> getAllBatches();
     /** get specific batch */
     Batch getBatch(int ID);
+    /** NOT IMPLEMENTED*/
+    void updateBatch(Batch batch);
+    /** NOT IMPLEMENTED*/
+    void deleteBatch(Batch batch);
 }//end interface Batch_DAO_Interface
