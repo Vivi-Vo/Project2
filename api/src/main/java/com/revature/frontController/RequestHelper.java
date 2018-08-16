@@ -16,7 +16,12 @@ public class RequestHelper {
             case "test":
                 TestDelegate.requestSubmit(req, res);
                 break;
+            case "tests":
+                TestDelegate.requestSubmit(req, res);
+                break;
             case "batch":
+                BatchDelegate.requestSubmit(req, res);
+            case "batches":
                 BatchDelegate.requestSubmit(req, res);
         }
 
