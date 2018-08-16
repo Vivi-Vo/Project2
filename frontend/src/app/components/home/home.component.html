@@ -4,17 +4,17 @@
             <h1>Welcome!</h1>
             <form>
                 <div class="form-group">
-                    <button class="btn btn-dark btn-lg">Test!</button>
+                    <button class="btn btn-dark btn-lg" (click)="onLoad()">Test!</button>
                 </div>
             </form>
         </div>
         <div class="col-md-8">
-            <app-cucumber-test></app-cucumber-test>
+            <h3 *ngIf="loading">Please wait, the tests are executing</h3>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <app-ngtest-test></app-ngtest-test>
+            <!-- <app-ngtest-test></app-ngtest-test> -->
         </div>
     </div>
 </div>

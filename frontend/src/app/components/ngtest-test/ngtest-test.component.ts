@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BatchResult } from '../batch-result';
 import { TestService } from '../services/test-service.service';
-import { TestResult } from '../test-result';
 
 @Component({
     selector: 'app-ngtest-test',
@@ -9,11 +9,19 @@ import { TestResult } from '../test-result';
 })
 export class NgtestTestComponent implements OnInit {
 
-    testResults: TestResult;
+    btnText = 'Show';
+    testResults: BatchResult;
     constructor(private testService: TestService) {}
 
     ngOnInit() {
-        this.testResults = this.testService.testNGResults;
+        if (this.testService.batchResults) {
+            this.testResults = this.testService.batchResults;
+            console.log(this.testResults);
+        }
     }
 
+    toggleStackTrace(index): void {
+        this.btnText = this.btnText === 'Show' ? 'Hide' : 'Show';
+        this.testResults.testMethods[index].showStackTrace = !this.testResults.testMethods[index].showStackTrace;
+    }
 }

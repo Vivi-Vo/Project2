@@ -5,12 +5,18 @@ export enum Status {
 }
 
 export interface TestMethod {
-    status: Status;
+    recordID: number;
+    BatchID: number;
+    InitiatedBy: string;
+    status: number;
     signature: string;
     name: string;
-    durationMS: number;
-    startedAt: Date;
-    finishedAt: Date;
-    exception: string | null;
+    duration_ms: number;
+    startedTime: Date;
+    finishedTime: Date;
+    exceptionClass: string | null;
+    exceptionMessage: string | null;
     stackTrace: string | null;
+    showStackTrace: boolean | undefined;
 }
+
