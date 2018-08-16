@@ -2,6 +2,9 @@
 -- Last modification date: 2018-08-15 14:19:05.534
 
 -- tables
-DROP TABLE TestNG;
+drop table TESTNG
+drop table BATCH
 
--- End of file.
+-- Sequences
+drop sequence BID_SEQ
+drop sequence RID_SEQ
