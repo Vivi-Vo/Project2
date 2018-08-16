@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.revature.delegates.OtherDelegate;
+import com.revature.delegates.BatchDelegate;
 import com.revature.delegates.TestDelegate;
 
 public class RequestHelper {
@@ -16,8 +16,8 @@ public class RequestHelper {
             case "test":
                 TestDelegate.requestSubmit(req, res);
                 break;
-            case "other":
-                OtherDelegate.requestSubmit(req, res);
+            case "batch":
+                BatchDelegate.requestSubmit(req, res);
         }
 
         return null;
