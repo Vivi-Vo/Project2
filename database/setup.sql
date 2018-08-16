@@ -20,7 +20,7 @@ CREATE TABLE TestNG (
     INIT_BY varchar2(40)  NOT NULL,
     TEST_NAME varchar2(100)  NOT NULL,
     SIGNATURE varchar2(100)  NOT NULL,
-    EX_STACK varchar2(900),
+    EX_STACK long,
     START_TIME varchar2(255)  NOT NULL,
     TEST_STATUS varchar2(30)  NOT NULL,
     CONSTRAINT TestNG_pk PRIMARY KEY (RECORD_ID)
