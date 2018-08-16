@@ -14,12 +14,15 @@ import java.util.ArrayList;
 public class TestNG_Service implements TNG_Interface
 {
     @Override
-    public void loadRecords(String json, int batchID) {
+    public int loadRecords(String json, int batchID) {
         ArrayList<TestNG> records = GsonCreateList.createListFromJSON(json);
+        int success = 1;
         for (TestNG test: records) {
             test.setBatchID(batchID);
-            new TestNG_DAO().insertTestNG(test);
+            int res = new TestNG_DAO().insertTestNG(test);
+            if (res == 0) success = 0;
         }//end for
+        return success;
     }//end loadRecords()
 
     /** Gets most current records from the database. */

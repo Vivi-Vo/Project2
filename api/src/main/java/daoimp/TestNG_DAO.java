@@ -16,8 +16,8 @@ import java.util.List;
 public class TestNG_DAO implements TNG_DAO_Interface
 {
     /** Insert a TestNG record */
-    public void insertTestNG(TestNG record)
-    { new CommonDAO().createRecord(record); }
+    public int insertTestNG(TestNG record)
+    { return new CommonDAO().createRecord(record); }
 
     /** Gets all Records from the TestNG Table*/
     public ArrayList<TestNG> getAllRecords() {
