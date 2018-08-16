@@ -21,8 +21,10 @@ public class RequestHelper {
                 break;
             case "batch":
                 BatchDelegate.requestSubmit(req, res);
+                break;
             case "batches":
                 BatchDelegate.requestSubmit(req, res);
+                break;
         }
 
         return null;
