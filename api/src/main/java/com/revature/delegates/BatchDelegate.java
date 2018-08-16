@@ -24,24 +24,19 @@ public class BatchDelegate {
                 break;
             case "POST":
                 if(postBatch(req) != 0)
-                    res.setStatus(200);
+                    res.setStatus(201);
                 break;
         }
     }
     public static String getBatch(HttpServletRequest req){
+        
         TestNG_Service service = new TestNG_Service();
-        if(req.getQueryString() == null)
-        {
-            String id = req.getRequestURI().substring(req.getContextPath().length()+1);
-            while(id.indexOf("/") > 0)
-            id = id.substring(0, id.indexOf("/"));
-            return service.getRecords(Integer.parseInt(id));
-        }
-        else{
-            String id = req.getQueryString().substring(req.getQueryString().length());
-            return service.getRecords(Integer.parseInt(id));
+        String id = req.getRequestURI().substring(req.getContextPath().length()+1);
+        while(id.indexOf("/") > 0)
+        id = id.substring(0, id.indexOf("/"));
+        return service.getRecords(Integer.parseInt(id));
         }    
-    }
+    
     public static int postBatch(HttpServletRequest req)throws IOException, ServletException{
         TestNG_Service service = new TestNG_Service();
     	Batch_Service b_service = new Batch_Service();
