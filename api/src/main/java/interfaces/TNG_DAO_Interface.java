@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @version 1.0 */
 public interface TNG_DAO_Interface {
     /** Insert a TestNG record */
-    void insertTestNG(TestNG record);
+    int insertTestNG(TestNG record);
     /** Gets all TestNG records */
     ArrayList<TestNG> getAllRecords();
     /** Gets more current TestNG records */

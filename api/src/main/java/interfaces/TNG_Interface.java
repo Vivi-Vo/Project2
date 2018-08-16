@@ -6,7 +6,7 @@ package interfaces;
  * @version 1.0 */
 public interface TNG_Interface {
     /** Load records into the DB */
-    void loadRecords(String json, int batchID);
+    int loadRecords(String json, int batchID);
     /** Get records from most recent load. */
     String getRecords(int batchID);
     /** Get records from all loads */
