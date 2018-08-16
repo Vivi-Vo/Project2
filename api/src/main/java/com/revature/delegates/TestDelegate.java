@@ -30,7 +30,11 @@ public class TestDelegate {
             {
                 String id = req.getRequestURI().substring(req.getContextPath().length()+1);
                 while(id.indexOf("/") > 0)
-                    id = id.substring(0, id.indexOf("/"));
+                {
+                	id = id.substring(0, id.indexOf("/"));
+                }
+            	System.out.println(id);
+
                 return service.getRecords(Integer.parseInt(id));
             }
             else if (context.equals("tests")){
@@ -40,7 +44,8 @@ public class TestDelegate {
                 return null;
         }
         else{
-            String id = req.getQueryString().substring(req.getQueryString().length());
+
+            String id = req.getQueryString().substring(req.getQueryString().length()-1);
             return service.getRecords(Integer.parseInt(id));
         }    
     }
