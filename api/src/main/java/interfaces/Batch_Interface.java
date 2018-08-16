@@ -1,8 +1,6 @@
 package interfaces;
 import models.Batch;
 
-import models.Batch;
-
 /** Interface methods for Batch_DAO
  * @author Joshua Pressley
  * @version 1.0 */

@@ -2,8 +2,6 @@ package interfaces;
 import models.Batch;
 import java.util.ArrayList;
 
-import java.util.ArrayList;
-
 /** Interface methods for Batch_DAO
  * @author Joshua Pressley
  * @version 1.0 */
