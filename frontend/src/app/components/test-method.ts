@@ -12,8 +12,8 @@ export interface TestMethod {
     signature: string;
     name: string;
     duration_ms: number;
-    startedTime: Date;
-    finishedTime: Date;
+    startTime: Date;
+    finishTime: Date;
     exceptionClass: string | null;
     exceptionMessage: string | null;
     stackTrace: string | null;

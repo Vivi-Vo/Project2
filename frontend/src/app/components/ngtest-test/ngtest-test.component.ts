@@ -5,10 +5,11 @@ import { TestService } from '../services/test-service.service';
 @Component({
     selector: 'app-ngtest-test',
     templateUrl: './ngtest-test.component.html',
-    styleUrls: ['./ngtest-test.component.css']
+    styles: [`.table-danger {background: darkred;}`]
 })
 export class NgtestTestComponent implements OnInit {
 
+    loaded = false;
     btnText = 'Show';
     testResults: BatchResult;
     constructor(private testService: TestService) {}
@@ -16,12 +17,13 @@ export class NgtestTestComponent implements OnInit {
     ngOnInit() {
         if (this.testService.batchResults) {
             this.testResults = this.testService.batchResults;
+            this.loaded = true;
             console.log(this.testResults);
         }
     }
 
     toggleStackTrace(index): void {
         this.btnText = this.btnText === 'Show' ? 'Hide' : 'Show';
-        this.testResults.testMethods[index].showStackTrace = !this.testResults.testMethods[index].showStackTrace;
+        this.testResults.tests[index].showStackTrace = !this.testResults.tests[index].showStackTrace;
     }
 }

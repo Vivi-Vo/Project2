@@ -18,6 +18,7 @@ import { DatesPipe } from './components/dates.pipe';
 
 import { HttpService } from './components/services/http.service';
 import { TestService } from './components/services/test-service.service';
+import { PassfailPipe } from './components/passfail.pipe';
 
 @NgModule({
     declarations: [
@@ -29,6 +30,7 @@ import { TestService } from './components/services/test-service.service';
         NgtestTestComponent,
         StacktracePipe,
         DatesPipe,
+        PassfailPipe,
     ],
     imports: [
         BrowserModule,

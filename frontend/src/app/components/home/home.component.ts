@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css'],
+    styleUrls: [],
 })
 export class HomeComponent implements OnInit {
 
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
 
     onLoad() {
         this.loading = true;
-        this.httpService.getTestData('/localhost:3001/run').subscribe(
+        this.httpService.getTestData('http://localhost:3001/run').subscribe(
             (response: BatchResult) => {
                 this.testResults = response;
                 this.loading = false;

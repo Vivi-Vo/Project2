@@ -11,5 +11,5 @@ export interface BatchResult {
     // finishedAt: Date;
     // className: string;
     status: number;
-    testMethods: TestMethod[];
+    tests: TestMethod[];
 }

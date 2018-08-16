@@ -78,3 +78,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Mac files
+*chromedriver
+*/WebDriverHelper.java

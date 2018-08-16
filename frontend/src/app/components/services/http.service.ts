@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -12,7 +12,10 @@ export class HttpService {
     }
 
     getTestData(url: string): Observable<any> {
-        return this.http.get(url).pipe(map((response: Response) => {
+        const headers = new Headers({
+            mode: 'cors'
+        });
+        return this.http.post(url, headers).pipe(map((response: Response) => {
             return response.json();
         }));
     }
