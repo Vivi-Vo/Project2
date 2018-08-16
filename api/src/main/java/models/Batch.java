@@ -7,7 +7,7 @@ import java.util.Objects;
  * @author Joshua Pressley
  * @version 1.0 */
 @Entity
-@Table(name = "Batch")
+@Table(name = "BATCH")
 public class Batch {
     /** Test Group ID */
     @Id
@@ -20,7 +20,7 @@ public class Batch {
     @Column(name = "STATUS", nullable = false, precision = 10)
     private int passFail;
 
-    /** Constructor- No Arguements */
+    /** Constructor- No Arguments */
     public Batch() { super(); }
 
     /** All Arguments Constructor */

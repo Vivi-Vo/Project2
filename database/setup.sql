@@ -1,21 +1,39 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2018-08-15 14:19:05.534
+-- Last modification date: 2018-08-16 12:37:32.108
+
+-- tables
+-- Table: BATCH
+CREATE TABLE BATCH (
+    B_ID number(10)  NOT NULL,
+    STATUS number(10)  NOT NULL,
+    CONSTRAINT Batch_pk PRIMARY KEY (B_ID)
+) ;
 
 -- Table: TestNG
 CREATE TABLE TestNG (
-    RECORD_ID   NUMBER(10)          not null primary key,
-    BATCH_ID    NUMBER(10)          not null,
-    INIT_BY     VARCHAR2(40 char)   not null,
-    TEST_STATUS VARCHAR2(30 char)   not null,
-    SIGNATURE   VARCHAR2(100 char)  not null,
-    TEST_NAME   VARCHAR2(100 char)  not null,
-    DURATION    NUMBER(10)          not null,
-    START_TIME  VARCHAR2(255 char)  not null,
-    FINISH_TIME VARCHAR2(255 char)  not null,
-    EX_CLASS    VARCHAR2(100 char),
-    EX_MESASGE  VARCHAR2(200 char),
-    EX_STACK    VARCHAR2(900 char)
-    EX_STACK varchar2(900)  NULL,
+    RECORD_ID number(10) NOT NULL,
+    BATCH_ID number(10)  NOT NULL,
+    DURATION number(10)  NOT NULL,
+    EX_CLASS varchar2(100),
+    EX_MESASGE varchar2(200),
+    FINISH_TIME varchar2(255)  NOT NULL,
+    INIT_BY varchar2(40)  NOT NULL,
+    TEST_NAME varchar2(100)  NOT NULL,
+    SIGNATURE varchar2(100)  NOT NULL,
+    EX_STACK varchar2(900),
+    START_TIME varchar2(255)  NOT NULL,
+    TEST_STATUS varchar2(30)  NOT NULL,
     CONSTRAINT TestNG_pk PRIMARY KEY (RECORD_ID)
 ) ;
 
+-- foreign keys
+-- Reference: BATCH_TestNG (table: TestNG)
+ALTER TABLE TestNG ADD CONSTRAINT BATCH_TestNG
+    FOREIGN KEY (BATCH_ID) REFERENCES BATCH (B_ID) ON DELETE CASCADE;
+
+
+-- Sequences
+CREATE SEQUENCE "BID_SEQ" MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE  NOPARTITION;
+CREATE SEQUENCE "RID_SEQ"  MINVALUE 1 MAXVALUE 9999999999999999999999999999 INCREMENT BY 1 START WITH 21 CACHE 20 NOORDER  NOCYCLE  NOPARTITION ;
+
+-- End of file.
