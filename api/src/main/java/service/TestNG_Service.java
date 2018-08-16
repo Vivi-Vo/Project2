@@ -22,12 +22,14 @@ public class TestNG_Service implements TNG_Interface
         }//end for
     }//end loadRecords()
 
+    /** Gets most current records from the database. */
     @Override
-    public String getRecordsCurrent(int batchID) {
-        ArrayList<TestNG> records = new TestNG_DAO().getCurrentRecords(batchID);
+    public String getRecords(int batchID) {
+        ArrayList<TestNG> records = new TestNG_DAO().getRecords(batchID);
         return GsonCreateString.createStringTestNG(records);
-    }//end getCurrentRecords()
+    }//end getRecords()
 
+    /** Gets al records from the Database. */
     @Override
     public String getAllRecords() {
         ArrayList<TestNG> records = new TestNG_DAO().getAllRecords();

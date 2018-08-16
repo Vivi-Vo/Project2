@@ -17,4 +17,9 @@ public class Batch_Service implements Batch_Interface
         new Batch_DAO().createBatch(newBatch);
         return newBatch.getBatchID();
     }//end createBatch()
+
+    /** Get most recent batch */
+    @Override
+    public int getMostRecentBatch()
+    { return new Batch_DAO().getMostRecent();  }
 }//end class Batch_Service
