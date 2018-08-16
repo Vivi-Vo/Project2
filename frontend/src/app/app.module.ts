@@ -13,7 +13,6 @@ import { TestsComponent } from './components/tests/tests.component';
 import { TestComponent } from './components/test/test.component';
 import { NgtestTestComponent } from './components/ngtest-test/ngtest-test.component';
 
-import { StacktracePipe } from './components/stacktrace.pipe';
 import { DatesPipe } from './components/dates.pipe';
 
 import { HttpService } from './components/services/http.service';
@@ -28,7 +27,6 @@ import { PassfailPipe } from './components/passfail.pipe';
         TestsComponent,
         TestComponent,
         NgtestTestComponent,
-        StacktracePipe,
         DatesPipe,
         PassfailPipe,
     ],

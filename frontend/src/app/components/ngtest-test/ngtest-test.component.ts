@@ -18,7 +18,7 @@ export class NgtestTestComponent implements OnInit {
         if (this.testService.batchResults) {
             this.testResults = this.testService.batchResults;
             this.loaded = true;
-            console.log(this.testResults);
+            // console.log(this.testResults);
         }
     }
 
