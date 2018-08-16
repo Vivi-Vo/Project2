@@ -25,8 +25,8 @@ public class Batch_DAO implements Batch_DAO_Interface
     public int getMostRecent() {
         Session session = utils.HibernateUtil.getSession().openSession();
         List results = session.createCriteria(Batch.class)
-                .setProjection( Projections.projectionList()
-                        .add( Projections.max("batchID") ) )
+                .setProjection(Projections.projectionList()
+                        .add(Projections.max("batchID") ) )
                 .list();
         return Integer.parseInt(results.get(0).toString());
     }//end getMostRecent()
@@ -52,4 +52,12 @@ public class Batch_DAO implements Batch_DAO_Interface
         List<Batch> resultList = session.createQuery(criteria).getResultList();
         return new ArrayList<>(resultList).get(0);
     }//end getBatch()
+
+    /** NOT IMPLEMENTED */
+    @Override
+    public void updateBatch(Batch batch) { System.out.println("Not Implemented"); }
+
+    /** NOT IMPLEMENTED */
+    @Override
+    public void deleteBatch(Batch batch) { System.out.println("Not Implemented"); }
 }//end class Batch_DAO

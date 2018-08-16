@@ -1,5 +1,4 @@
 package interfaces;
-
 import models.Batch;
 
 /** Interface methods for Batch_DAO
@@ -14,4 +13,8 @@ public interface Batch_Interface {
     String getAllBatches();
     /** Get a specific batch*/
     Batch getBatch(int ID);
+    /** NOT IMPLEMENTED*/
+    void updateBatch(Batch batch);
+    /** NOT IMPLEMENTED*/
+    void deleteBatch(Batch batch);
 }//end interface Batch_Interface

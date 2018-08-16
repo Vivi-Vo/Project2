@@ -29,9 +29,16 @@ public class Batch_Service implements Batch_Interface
     public String getAllBatches()
     { return GsonCreateString.createStringBatch(new Batch_DAO().getAllBatches()); }
 
-    /** Get a specific batch
-     * @param ID id to get */
+    /** Get a specific batch */
     @Override
     public Batch getBatch(int ID)
     { return new Batch_DAO().getBatch(ID); }
+
+    /** NOT IMPLEMENTED */
+    @Override
+    public void updateBatch(Batch batch) { System.out.println("Not Implemented"); }
+
+    /** NOT IMPLEMENTED */
+    @Override
+    public void deleteBatch(Batch batch) { System.out.println("Not Implemented"); }
 }//end class Batch_Service

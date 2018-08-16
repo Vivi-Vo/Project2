@@ -7,12 +7,12 @@ import utils.GsonCreateString;
 import java.util.ArrayList;
 
 /** TestNG_Service Class
- * Description: Service class for TestNG methods.
- *      Methods defined using the TestNG Interface.
+ * Description: Service class for TestNG methods. Methods defined using the TestNG Interface.
  * @author Joshua Pressley
  * @version 1.0 */
 public class TestNG_Service implements TNG_Interface
 {
+    /** Loads in records from JSON*/
     @Override
     public int loadRecords(String json, int batchID) {
         ArrayList<TestNG> records = GsonCreateList.createListFromJSON(json);
@@ -32,16 +32,24 @@ public class TestNG_Service implements TNG_Interface
         return GsonCreateString.createStringTestNG(records);
     }//end getRecords()
 
-    /** Gets al records from the Database. */
+    /** Gets all records from the Database. */
     @Override
     public String getAllRecords() {
         ArrayList<TestNG> records = new TestNG_DAO().getAllRecords();
         return GsonCreateString.createStringTestNG(records);
     }//end getAllRecords()
 
+    /** NOT IMPLEMENTED*/
     @Override
     public void updateRecords(String json) { System.out.println("Update Method Not Implemented"); }
 
+    /** NOT IMPLEMENTED*/
     @Override
     public void deleteRecords(String json) { System.out.println("Delete Method Not Implemented"); }
+
+    /** Get a single test
+     * @param testID test id*/
+    @Override
+    public String getTest(int testID)
+    { return GsonCreateString.createTest(new TestNG_DAO().getTest(testID)); }
 }//end class TestNG_Service
