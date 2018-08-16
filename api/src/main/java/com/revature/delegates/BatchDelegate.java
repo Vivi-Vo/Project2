@@ -5,6 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public class BatchDelegate {
     public static void requestSubmit(HttpServletRequest req, HttpServletResponse res){
-
+    	
     }
 }
