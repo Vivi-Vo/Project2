@@ -12,7 +12,7 @@ public interface Batch_Interface {
     /** gets all batches */
     String getAllBatches();
     /** Get a specific batch*/
-    Batch getBatch(int ID);
+    String getBatch(int ID);
     /** NOT IMPLEMENTED*/
     void updateBatch(Batch batch);
     /** NOT IMPLEMENTED*/

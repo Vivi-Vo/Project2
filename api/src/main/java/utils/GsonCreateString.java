@@ -26,5 +26,11 @@ public class GsonCreateString
     public static String createTest(TestNG record) {
         if (record != null) return new Gson().toJson(record);
         return null;
+    }//end createTest()
+
+    /** Creates JSON string of a TestNG record. */
+    public static String createBatch(Batch record) {
+        if (record != null) return new Gson().toJson(record);
+        return null;
     }//end createBatch()
 }//end class GsonCreateString
