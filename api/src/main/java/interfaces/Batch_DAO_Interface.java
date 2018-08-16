@@ -7,4 +7,6 @@ import models.Batch;
 public interface Batch_DAO_Interface {
     /** Create a batch */
     void createBatch(Batch batch1);
+    /** Get most recent batch */
+    int getMostRecent();
 }//end interface Batch_DAO_Interface

@@ -8,7 +8,7 @@ public interface TNG_Interface {
     /** Load records into the DB */
     void loadRecords(String json, int batchID);
     /** Get records from most recent load. */
-    String getRecordsCurrent(int batchID);
+    String getRecords(int batchID);
     /** Get records from all loads */
     String getAllRecords();
     /** Update record --NOT IMPLEMENTED */
