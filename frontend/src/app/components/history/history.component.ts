@@ -45,7 +45,7 @@ export class HistoryComponent implements OnInit {
      * Loads all the batches run in history
      */
     loadHistoricalData() {
-        this.httpService.getTestData('some url').subscribe(
+        this.httpService.getTestData('/api/batches').subscribe(
             (response: Response) => console.log(response),
             (error) => console.error(error)
         );

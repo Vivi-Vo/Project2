@@ -28,21 +28,13 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {}
 
-
-    onSave() {
-        this.httpService.sendTestData(this.testResults, 'https://fake-project-2-db.firebaseio.com/data.json').subscribe(
-            (response) => console.log(response),
-            (error) => console.log(error)
-        );
-    }
-
     /**
      * Hits the server for test result
      * Upon receipt, navigates to test route
      */
     onLoad() {
         this.loading = true;
-        this.httpService.getTestData('/run').subscribe(
+        this.httpService.getTestData('http://localhost:3001/run').subscribe(
             (response: BatchResult) => {
                 this.testResults = response;
                 this.loading = false;
