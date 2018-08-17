@@ -16,9 +16,8 @@
         </tr>
     </thead>
     <tbody *ngFor="let method of testResults.tests; let index = index">
-        <!-- <div *ngFor="let method of testResults.testMethods"> -->
             <tr>
-                <td>{{ method.name }}</td>
+                <td>{{ method.name | camelToTitle }}</td>
                 <td>{{ method.signature }}</td>
                 <td>{{ method.duration_ms }} ms</td>
                 <td>{{ method.startTime | dates }}</td>
@@ -31,10 +30,12 @@
                     <button class="btn btn-dark" (click)="toggleStackTrace(index)">{{ btnText }} Stack Trace</button>
                     <span class="font-weight-bold ml-1">Exception Message: {{ method.exceptionMessage }}</span>
                     <div *ngIf="method.showStackTrace">
-                        <p>{{ method.stackTrace }}</p>
+                        <p [appStacktrace]="method.stackTrace"></p>
                     </div>
                 </td>
             </tr>
-        <!-- </div> -->
     </tbody>
 </table>
+<p *ngIf="!loaded">
+    Please return to <a [routerLink]="['/home']">home</a> to run a test.
+</p>

@@ -9,7 +9,7 @@
                     (click)="switchPage('home')">
                     Home
                     <span *ngIf="page=='home'" class="sr-only">(current)</span>
-            </a>
+                </a>
             </li>
             <li class="nav-item" [ngClass]="{ active: page==='tests'}">
                 <a class="nav-link"
@@ -17,7 +17,15 @@
                     (click)="switchPage('tests')">
                     Tests
                     <span *ngIf="page=='tests'" class="sr-only">(current)</span>
-            </a>
+                </a>
+            </li>
+            <li class="nav-item" [ngClass]="{ active: page==='history'}">
+                <a class="nav-link"
+                    routerLink="history"
+                    (click)="switchPage('history')">
+                    History
+                    <span *ngIf="page=='history'" class="sr-only">(current)</span>
+                </a>
             </li>
         </ul>
     </div>

@@ -8,5 +8,4 @@ import { TestService } from './components/services/test-service.service';
   providers: [TestService]
 })
 export class AppComponent {
-  title = 'app';
 }

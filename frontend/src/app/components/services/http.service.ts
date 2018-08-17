@@ -7,10 +7,23 @@ import { map } from 'rxjs/operators';
 export class HttpService {
     constructor(private http: Http) {}
 
+    /**
+     * Sends data of any type to server
+     * @param data data to send to the server
+     * @param url string url to hit
+     * @returns Observable that listens for response
+     */
     sendTestData(data: any, url: string): Observable<any> {
         return this.http.put(url, data);
     }
 
+    /**
+     * Fetches the test data from the server, using POST
+     * cors enabled
+     * mapped to parse response from json
+     * @param url string url to hit
+     * @returns Observable that listens for a response
+     */
     getTestData(url: string): Observable<any> {
         const headers = new Headers({
             mode: 'cors'

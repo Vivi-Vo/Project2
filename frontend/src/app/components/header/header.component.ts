@@ -14,6 +14,10 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit() {}
 
+    /**
+     * Switches between page or home to apply appropriate CSS
+     * @param page string
+     */
     switchPage(page: string) {
         switch (page) {
             case 'home':
@@ -22,6 +26,8 @@ export class HeaderComponent implements OnInit {
             case 'tests':
                 this.page = 'tests';
                 break;
+            case 'history':
+                this.page = 'history';
         }
     }
 

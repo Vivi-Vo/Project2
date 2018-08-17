@@ -10,14 +10,17 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { TestsComponent } from './components/tests/tests.component';
-import { TestComponent } from './components/test/test.component';
-import { NgtestTestComponent } from './components/ngtest-test/ngtest-test.component';
+import { TestNGTestComponent } from './components/testng-test/testng-test.component';
 
 import { DatesPipe } from './components/dates.pipe';
 
 import { HttpService } from './components/services/http.service';
 import { TestService } from './components/services/test-service.service';
 import { PassfailPipe } from './components/passfail.pipe';
+import { CamelToTitlePipe } from './components/camel-to-title.pipe';
+import { HistoryComponent } from './components/history/history.component';
+import { BatchComponent } from './components/history/batch/batch.component';
+import { StacktraceDirective } from './components/stacktrace.directive';
 
 @NgModule({
     declarations: [
@@ -25,10 +28,13 @@ import { PassfailPipe } from './components/passfail.pipe';
         HeaderComponent,
         HomeComponent,
         TestsComponent,
-        TestComponent,
-        NgtestTestComponent,
+        TestNGTestComponent,
         DatesPipe,
         PassfailPipe,
+        CamelToTitlePipe,
+        HistoryComponent,
+        BatchComponent,
+        StacktraceDirective,
     ],
     imports: [
         BrowserModule,

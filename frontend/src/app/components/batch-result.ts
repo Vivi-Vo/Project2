@@ -1,5 +1,8 @@
 import { TestMethod } from './test-method';
 
+/**
+ * Expected type recieved from DB for a full batch of tests
+ */
 export interface BatchResult {
     // skipped: number;
     // failed: number;
