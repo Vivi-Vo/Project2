@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
      */
     onLoad() {
         this.loading = true;
-        this.httpService.getTestData('http://localhost:3001/run').subscribe(
+        this.httpService.getTestData('/run').subscribe(
             (response: BatchResult) => {
                 this.testResults = response;
                 this.loading = false;
