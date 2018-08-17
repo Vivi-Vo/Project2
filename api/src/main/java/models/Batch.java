@@ -7,8 +7,10 @@ import java.util.Objects;
  * @author Joshua Pressley
  * @version 1.0 */
 @Entity
+@NamedQueries({ @NamedQuery(name="RetrieveAllBatch", query="from models.Batch") })
 @Table(name = "BATCH")
-public class Batch {
+public class Batch
+{
     /** Test Group ID */
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bid_seq")
@@ -19,6 +21,8 @@ public class Batch {
     /** Result of the test group */
     @Column(name = "STATUS", nullable = false, precision = 10)
     private int passFail;
+
+    //---------------------------------------
 
     /** Constructor- No Arguments */
     public Batch() { super(); }

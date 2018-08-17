@@ -8,8 +8,7 @@ import java.util.ArrayList;
  * Description: Creates a list of type T from JSON.
  * @author Joshua Pressley
  * @version 1.0 */
-public class GsonCreateList
-{
+public class GsonCreateList {
     /** Creates List of type TestNG */
     public static ArrayList<TestNG> createListFromJSON(String json)
     { return new Gson().fromJson(json,new TypeToken<ArrayList<TestNG>>() {}.getType()); }

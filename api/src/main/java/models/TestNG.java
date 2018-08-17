@@ -6,9 +6,7 @@ import java.util.Objects;
  * @author Joshua Pressley
  * @version 1.0 */
 @Entity
-@NamedQueries({
-        @NamedQuery(name="RetrieveAllTestNG", query="from models.TestNG")
-})
+@NamedQueries({ @NamedQuery(name="RetrieveAllTestNG", query="from models.TestNG") })
 @Table(name = "TESTNG")
 public class TestNG
 {
@@ -60,7 +58,7 @@ public class TestNG
     private String exceptionMessage;
 
     /** The stack trace of the failure. */
-    @Column(name = "EX_STACK", length = 900)
+    @Column(name = "EX_STACK")
     private String stackTrace;
 
     //----------------------------------------------

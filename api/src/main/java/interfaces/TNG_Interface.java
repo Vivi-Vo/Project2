@@ -1,4 +1,5 @@
 package interfaces;
+import org.json.JSONArray;
 
 /** TestNG Service Interface
  * Description: Methods for TestNG Service class
@@ -6,7 +7,7 @@ package interfaces;
  * @version 1.0 */
 public interface TNG_Interface {
     /** Load records into the DB */
-    void loadRecords(String json, int batchID);
+    int loadRecords(JSONArray json, int batchID);
     /** Get records from most recent load. */
     String getRecords(int batchID);
     /** Get records from all loads */
@@ -15,4 +16,6 @@ public interface TNG_Interface {
     void updateRecords(String json);
     /** Delete record --NOT IMPLEMENTED */
     void deleteRecords(String json);
+    /** Get a single test */
+    String getTest(int testID);
 }//end interface TNG_Interface
