@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BatchResult } from '../batch-result';
 import { TestService } from '../services/test-service.service';
 import { HttpService } from '../services/http.service';
+import { URIService } from '../services/uris.service';
 import { Response } from '@angular/http';
 
 
@@ -18,17 +19,22 @@ export class TestNGTestComponent implements OnInit {
     loaded = false;
     btnText = 'Show';
     testResults: BatchResult;
-    constructor(private testService: TestService, private httpService: HttpService) {}
+    constructor(
+        private testService: TestService,
+        private httpService: HttpService,
+        private uri: URIService
+    ) {}
 
     /**
      * Upon creation, check TestResult service
-     * if it exists, display the table
+     * if it exists, display the table, else get the most recent test
      */
     ngOnInit() {
         if (this.testService.batchResults) {
             this.testResults = this.testService.batchResults;
             this.loaded = true;
-            // console.log(this.testResults);
+        } else {
+            this.getMostRecentTest();
         }
     }
 
@@ -39,6 +45,18 @@ export class TestNGTestComponent implements OnInit {
     toggleStackTrace(index: number): void {
         this.btnText = this.btnText === 'Show' ? 'Hide' : 'Show';
         this.testResults.tests[index].showStackTrace = !this.testResults.tests[index].showStackTrace;
+    }
+
+    getMostRecentTest() {
+        this.httpService.getTestData(this.uri.URIs.batches).subscribe(
+            (response: Response) => {
+                const batchId = response.json();
+                this.httpService.getTestData(this.uri.getBatchUri(batchId.BatchId)).subscribe();
+            },
+            (error) => {
+                console.error(error);
+            }
+        );
     }
 
     /**

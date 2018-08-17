@@ -21,6 +21,7 @@ import { CamelToTitlePipe } from './components/camel-to-title.pipe';
 import { HistoryComponent } from './components/history/history.component';
 import { BatchComponent } from './components/history/batch/batch.component';
 import { StacktraceDirective } from './components/stacktrace.directive';
+import { URIService } from './components/services/uris.service';
 
 @NgModule({
     declarations: [
@@ -42,7 +43,11 @@ import { StacktraceDirective } from './components/stacktrace.directive';
         RouterModule.forRoot(routes),
         HttpModule
     ],
-    providers: [HttpService, TestService],
+    providers: [
+        HttpService,
+        TestService,
+        URIService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

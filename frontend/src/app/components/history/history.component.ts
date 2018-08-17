@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TestService } from '../services/test-service.service';
 import { HttpService } from '../services/http.service';
+import { URIService } from '../services/uris.service';
 import { BatchResult } from '../batch-result';
 import { Response } from '@angular/http';
 
@@ -39,13 +40,17 @@ export class HistoryComponent implements OnInit {
     //         ]
     //     }
     // ];
-    constructor(private testService: TestService, private httpService: HttpService) {}
+    constructor(
+        private testService: TestService,
+        private httpService: HttpService,
+        private uri: URIService
+    ) {}
 
     /**
      * Loads all the batches run in history
      */
     loadHistoricalData() {
-        this.httpService.getTestData('/api/batches').subscribe(
+        this.httpService.getTestData(this.uri.URIs.batches).subscribe(
             (response: Response) => console.log(response),
             (error) => console.error(error)
         );
