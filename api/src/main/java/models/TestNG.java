@@ -58,7 +58,7 @@ public class TestNG
     private String exceptionMessage;
 
     /** The stack trace of the failure. */
-    @Column(name = "EX_STACK", length = 900)
+    @Column(name = "EX_STACK")
     private String stackTrace;
 
     //----------------------------------------------
