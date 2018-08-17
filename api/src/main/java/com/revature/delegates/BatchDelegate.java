@@ -2,7 +2,7 @@ package com.revature.delegates;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -32,34 +32,46 @@ public class BatchDelegate {
     public static String getBatch(HttpServletRequest req){
         Batch_Service b_service = new Batch_Service();
         TestNG_Service service = new TestNG_Service();
+        
         String[] uri = req.getRequestURI().split("/");
-                
+        System.out.println(Arrays.toString(uri));      
         String context = uri[2];
+
         if(context.equals("batch"))
         {
-            String id = req.getRequestURI().substring(req.getContextPath().length()+1);
-      
-        	while(id.indexOf("/") > 0)
-        	{
-                id = id.substring(0, id.indexOf("/"));
-        	}
-        	System.out.println("id: " + id);
-                if(id.equals("tests")) {
-            	id = uri[3];
-                return service.getRecords(Integer.parseInt(id));
+            int length = uri.length;
+            switch (length){
+                case 3:            // /batch
+            	    return b_service.getBatch(b_service.getMostRecentBatch());
+                case 4:             // /batch/id
+            	    return b_service.getBatch(Integer.parseInt(uri[3]));
+                case 5:            // /batch/id/tests
+                    return service.getRecords(Integer.parseInt(uri[3]));
+                default:
+                    return null;
             }
-            else if (id.equals("")) {
-            	return b_service.getBatch(b_service.getMostRecentBatch());
-            }
-            else
-            	return b_service.getBatch(Integer.parseInt(id));
         }
-        
         else if (context.equals("batches")){
             return b_service.getAllBatches();
          }
         else
             return null;
+            // String id = req.getRequestURI().substring(req.getContextPath().length()+1);      
+        	// while(id.indexOf("/") > 0)
+        	// {
+            //     id = id.substring(0, id.indexOf("/"));
+        	// }
+        	// System.out.println("id: " + id);
+            //     if(id.equals("tests")) {
+            // 	id = uri[3];
+            //     return service.getRecords(Integer.parseInt(id));
+            // }
+            // else if (id.equals("")) {
+            // 	return b_service.getBatch(b_service.getMostRecentBatch());
+            // }
+            // else
+            // 	return b_service.getBatch(Integer.parseInt(id));
+
         }    
     
     public static int postBatch(HttpServletRequest req)throws IOException, ServletException{

@@ -44,7 +44,6 @@ public class TestDelegate {
                 return null;
         }
         else{
-
             String id = req.getQueryString().substring(req.getQueryString().length()-1);
             return service.getRecords(Integer.parseInt(id));
         }    
