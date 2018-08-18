@@ -1,14 +1,14 @@
 package com.revature.delegates;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.stream.Collectors;
+import com.revature.service.Batch_Service;
+import com.revature.service.TestNG_Service;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import service.Batch_Service;
-import service.TestNG_Service;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /** BatchDelegate
  * Retrieving Batch info for GET method, return a 200 status along with batch info if success
@@ -18,20 +18,22 @@ import service.TestNG_Service;
 public class BatchDelegate 
 {
 	/** Request handler for Batches */
-    public static void requestSubmit(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException
-    {
+    public static void requestSubmit(HttpServletRequest req, HttpServletResponse res)
+            throws IOException, ServletException {
         switch(req.getMethod()) {
         	case "GET":
 	        	String result = getBatch(req);
 	            if(result != null) {
+                    res.setContentType("application/json");
 	                res.setStatus(200);
 	                res.getWriter().append(result);
-            }//end if
-            break;
+                }//end if
+                break;
             case "POST":
             	int rest = postBatch(req);
                 if (rest != -1) {
                 	res.setStatus(201);
+                    res.setContentType("application/json");
                 	res.setHeader("location", "/batch/"+rest);
                 	res.getWriter().append("Created");
                 }//end if
@@ -40,7 +42,7 @@ public class BatchDelegate
     }//end requestSubmit()
     
     /** Returns batch information from the Database*/
-    public static String getBatch(HttpServletRequest req)
+    private static String getBatch(HttpServletRequest req)
     {
         Batch_Service b_service = new Batch_Service();
         TestNG_Service service = new TestNG_Service();
@@ -49,27 +51,26 @@ public class BatchDelegate
         System.out.println(Arrays.toString(uri));      
         String context = uri[2];
 
-        if(context.equals("batch")) {
-            int length = uri.length;
-            switch (length){
-                case 3: // /batch
-            	    return b_service.getBatch(b_service.getMostRecentBatch());
-                case 4: // /batch/id
-            	    return b_service.getBatch(Integer.parseInt(uri[3]));
-                case 5: // /batch/id/tests
-                    return service.getRecords(Integer.parseInt(uri[3]));
-                default:
-                    return null;
-            }//end switch
-        }//end if
-        else if (context.equals("batches"))
-            return b_service.getAllBatches();
-        else
-            return null;
+        switch (context) {
+            case "batch":
+                int length = uri.length;
+                switch (length) {
+                    case 3: // /batch
+                        return b_service.getBatch(b_service.getMostRecentBatch());
+                    case 4: // /batch/id
+                        return b_service.getBatch(Integer.parseInt(uri[3]));
+                    case 5: // /batch/id/tests
+                        return service.getRecords(Integer.parseInt(uri[3]));
+                    default:
+                        return null;
+                }//end switch
+            case "batches": return b_service.getAllBatches();
+            default: return null;
+        }//end switch
     }//end getBatch()    
     
     /** Posts a batch and returns the inserted records. */
-    public static int postBatch(HttpServletRequest req)throws IOException, ServletException
+    private static int postBatch(HttpServletRequest req)throws IOException, ServletException
     {
         TestNG_Service service = new TestNG_Service();
     	Batch_Service b_service = new Batch_Service();
@@ -78,9 +79,7 @@ public class BatchDelegate
         JSONObject jo = new JSONObject(test);
         JSONArray testArray = jo.getJSONArray("tests");
         int id = b_service.createBatch(jo.getInt("status")); 
-        if(service.loadRecords(testArray, id) != 0)
-        	return id;
-        else
-        	return -1;
+        if(service.loadRecords(testArray, id) != 0)  return id;
+        else return -1;
     }//end postBatch()
 }//end class BatchDelegate

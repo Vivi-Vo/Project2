@@ -1,7 +1,7 @@
-package utils;
+package com.revature.utils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import models.TestNG;
+import com.revature.models.TestNG;
 import java.util.ArrayList;
 
 /** GsonCreateList

@@ -1,8 +1,8 @@
-package daoimp;
+package com.revature.daoimp;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import utils.HibernateUtil;
+import com.revature.utils.HibernateUtil;
 
 /** Common_DAO
  * Methods for Common Operations in the Database for multiple Tables
@@ -10,6 +10,7 @@ import utils.HibernateUtil;
  * @version 1.0 */
 class CommonDAO
 {
+    /** Creates a record of type T, object must be a hibernate model*/
     int createRecord(Object o) {
         Session session = HibernateUtil.getSession().openSession();
         Transaction transaction = null;

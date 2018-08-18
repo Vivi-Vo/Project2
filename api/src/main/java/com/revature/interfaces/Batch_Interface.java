@@ -1,6 +1,4 @@
-package interfaces;
-import models.Batch;
-
+package com.revature.interfaces;
 /** Interface methods for Batch_DAO
  * @author Joshua Pressley
  * @version 1.0 */
@@ -13,8 +11,4 @@ public interface Batch_Interface {
     String getAllBatches();
     /** Get a specific batch*/
     String getBatch(int ID);
-    /** NOT IMPLEMENTED*/
-    void updateBatch(Batch batch);
-    /** NOT IMPLEMENTED*/
-    void deleteBatch(Batch batch);
 }//end interface Batch_Interface

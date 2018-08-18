@@ -1,5 +1,5 @@
-package interfaces;
-import models.TestNG;
+package com.revature.interfaces;
+import com.revature.models.TestNG;
 import java.util.ArrayList;
 
 /** TestNG Dao Interface
@@ -13,10 +13,6 @@ public interface TNG_DAO_Interface {
     ArrayList<TestNG> getAllRecords();
     /** Gets more current TestNG records */
     ArrayList<TestNG> getRecords(int batchID);
-    /** Update record --NOT IMPLEMENTED */
-    void updateTestNG(TestNG record);
-    /** Delete record --NOT IMPLEMENTED */
-    void deleteTestNG(TestNG record);
     /** Get a single test */
     TestNG getTest(int testID);
 }//end interface TNG_DAO_Interface
