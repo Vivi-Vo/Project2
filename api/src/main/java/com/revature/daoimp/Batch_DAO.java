@@ -1,6 +1,7 @@
-package daoimp;
-import interfaces.Batch_DAO_Interface;
-import models.Batch;
+package com.revature.daoimp;
+import com.revature.interfaces.Batch_DAO_Interface;
+import com.revature.models.Batch;
+import com.revature.utils.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.criterion.Projections;
 import org.hibernate.query.Query;
@@ -17,13 +18,12 @@ import java.util.List;
 public class Batch_DAO implements Batch_DAO_Interface
 {
     /** Create a batch */
-    public void createBatch(Batch batch1)
+    @Override public void createBatch(Batch batch1)
     { new CommonDAO().createRecord(batch1); }
 
     /** Get most recent batch */
-    @Override
-    public int getMostRecent() {
-        Session session = utils.HibernateUtil.getSession().openSession();
+    @Override public int getMostRecent() {
+        Session session = HibernateUtil.getSession().openSession();
         List results = session.createCriteria(Batch.class)
                 .setProjection(Projections.projectionList()
                         .add(Projections.max("batchID") ) )
@@ -32,18 +32,16 @@ public class Batch_DAO implements Batch_DAO_Interface
     }//end getMostRecent()
 
     /** Gets all batches */
-    @Override
-    public ArrayList<Batch> getAllBatches() {
-        Session session = utils.HibernateUtil.getSession().openSession();
+    @Override public ArrayList<Batch> getAllBatches() {
+        Session session = HibernateUtil.getSession().openSession();
         Query query = session.getNamedQuery("RetrieveAllBatch");
         return new ArrayList<Batch>(query.getResultList());
     }//end getAllBatches()
 
     /** Get specific batch.
      * @param ID id to fetch */
-    @Override
-    public Batch getBatch(int ID) {
-        Session session = utils.HibernateUtil.getSession().openSession();
+    @Override public Batch getBatch(int ID) {
+        Session session = HibernateUtil.getSession().openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Batch> criteria = builder.createQuery(Batch.class);
         Root<Batch> root = criteria.from(Batch.class);
@@ -52,12 +50,4 @@ public class Batch_DAO implements Batch_DAO_Interface
         List<Batch> resultList = session.createQuery(criteria).getResultList();
         return new ArrayList<>(resultList).get(0);
     }//end getBatch()
-
-    /** NOT IMPLEMENTED */
-    @Override
-    public void updateBatch(Batch batch) { System.out.println("Not Implemented"); }
-
-    /** NOT IMPLEMENTED */
-    @Override
-    public void deleteBatch(Batch batch) { System.out.println("Not Implemented"); }
 }//end class Batch_DAO

@@ -1,4 +1,4 @@
-package interfaces;
+package com.revature.interfaces;
 import org.json.JSONArray;
 
 /** TestNG Service Interface
@@ -12,10 +12,6 @@ public interface TNG_Interface {
     String getRecords(int batchID);
     /** Get records from all loads */
     String getAllRecords();
-    /** Update record --NOT IMPLEMENTED */
-    void updateRecords(String json);
-    /** Delete record --NOT IMPLEMENTED */
-    void deleteRecords(String json);
     /** Get a single test */
     String getTest(int testID);
 }//end interface TNG_Interface

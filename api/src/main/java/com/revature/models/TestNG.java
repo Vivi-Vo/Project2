@@ -1,4 +1,4 @@
-package models;
+package com.revature.models;
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -6,7 +6,7 @@ import java.util.Objects;
  * @author Joshua Pressley
  * @version 1.0 */
 @Entity
-@NamedQueries({ @NamedQuery(name="RetrieveAllTestNG", query="from models.TestNG") })
+@NamedQueries({ @NamedQuery(name="RetrieveAllTestNG", query="from com.revature.models.TestNG") })
 @Table(name = "TESTNG")
 public class TestNG
 {

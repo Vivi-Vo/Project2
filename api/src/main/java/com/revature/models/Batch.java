@@ -1,4 +1,4 @@
-package models;
+package com.revature.models;
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -7,7 +7,7 @@ import java.util.Objects;
  * @author Joshua Pressley
  * @version 1.0 */
 @Entity
-@NamedQueries({ @NamedQuery(name="RetrieveAllBatch", query="from models.Batch") })
+@NamedQueries({ @NamedQuery(name="RetrieveAllBatch", query="from com.revature.models.Batch") })
 @Table(name = "BATCH")
 public class Batch
 {

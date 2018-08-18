@@ -1,10 +1,10 @@
 package com.revature.frontController;
-import java.io.IOException;
+import com.revature.delegates.BatchDelegate;
+import com.revature.delegates.TestDelegate;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.revature.delegates.BatchDelegate;
-import com.revature.delegates.TestDelegate;
+import java.io.IOException;
 
 /** RequestHelper
  * Reroute requests to specific delegate based on request endpoint
@@ -12,28 +12,31 @@ import com.revature.delegates.TestDelegate;
  * @version 1.0 */
 public class RequestHelper 
 {
-	/** */
-    public static String process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
+	/** processes request*/
+    public static void process(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException
     {
     	String[] uri= req.getRequestURI().split("/");
-    	switch (uri[2]) {
+    	String context;
+    	try { context = uri[2]; }
+    	catch (ArrayIndexOutOfBoundsException e) { context = "";}
+
+    	switch (context) {
             case "test":
-            	System.out.println("test");
                 TestDelegate.requestSubmit(req, res);
                 break;
             case "tests":
-            	System.out.println("tests");
                 TestDelegate.requestSubmit(req, res);
                 break;
             case "batch":
-            	System.out.println("Batch");
                 BatchDelegate.requestSubmit(req, res);
                 break;
             case "batches":
-            	System.out.println("Batches");
                 BatchDelegate.requestSubmit(req, res);
                 break;
+             default:
+                 res.setContentType("application/json");
+                 res.setStatus(200);
+                 res.getWriter().append("Welcome, You have contacted the server");
         }//end switch
-        return null;
-    }//end process
+    }//end process()
 }//end class RequestHelper
