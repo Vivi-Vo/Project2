@@ -44,7 +44,7 @@
 
 * `passFail` takes the numeric passFail values and converts them to `Passed`, `Failed` or `Skipped` according to: 
     * Passed == 1, Failed == 0, Skipped == 2
-    * Usage `{{ someStatus | passFail }}
+    * Usage `{{ someStatus | passFail }}`
     * Example `0` -> `Failed`
 
 ## Directives

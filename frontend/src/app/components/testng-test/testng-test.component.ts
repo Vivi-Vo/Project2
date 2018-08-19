@@ -60,10 +60,10 @@ export class TestNGTestComponent implements OnInit {
 
     getMostRecentTest() {
         const uri = this.uri.getURIRoute('batches');
-        this.httpService.getTestData(uri).subscribe(
+        this.httpService.fetchTestData(uri).subscribe(
             (response) => {
                 const batchId = response;
-                this.httpService.getTestData(this.uri.getBatchUri(batchId.BatchId)).subscribe(
+                this.httpService.fetchTestData(this.uri.getBatchUri(batchId.BatchId)).subscribe(
                     (testResponse: any) => {
                         this.testResults = testResponse;
                         this.loaded = true;

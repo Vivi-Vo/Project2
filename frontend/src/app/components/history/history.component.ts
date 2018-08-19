@@ -27,7 +27,7 @@ export class HistoryComponent implements OnInit {
      */
     loadHistoricalData() {
         const uri = this.uri.getURIRoute('batches');
-        this.httpService.getTestData(uri).subscribe(
+        this.httpService.fetchTestData(uri).subscribe(
             (response) => {
                 this.batches = this.batches.concat(response);
                 this.loading = false;
