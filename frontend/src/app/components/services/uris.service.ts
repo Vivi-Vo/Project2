@@ -11,7 +11,7 @@ export class URIService {
         batch: this.apiRoute + 'batch',
         batches: this.apiRoute + 'batches',
         run: '/run',
-        batchLocal: '',
+        batchLocal: 'http://ec2-18-206-188-225.compute-1.amazonaws.com/api/project2/batch',
         batchesLocal: 'http://localhost:3000/batches',
         runLocal: 'http://localhost:3000/run'
     };

@@ -5,7 +5,7 @@ import { ThemeService } from './components/services/theme.service';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styles: [`div { width: 100%; height: 100%;}`],
+    styles: [`div { width: 100%; height: 100vh;}`],
     providers: [TestService]
 })
 export class AppComponent {
