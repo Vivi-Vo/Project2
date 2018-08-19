@@ -1,15 +1,19 @@
 const fs = require('fs');
+const http = require('http');
 const convert = require('xml-js');
 
 const Test = require('../models/test');
 const runCommand = require('../utils/runCommand');
-const { pathToTestOutputXML } = require('../constants');
+const { pathToTestOutputXML, mavenTestCommand } = require('../constants');
 
 module.exports = function testFunction() {
     return new Promise(async (resolve, reject) => {
         try {
-            await runCommand("mvn test");
+            await runCommand(mavenTestCommand);
         } catch (err) {
+            // ! this silences all errors therefore if a path is incorrect it will not report
+            // TODO: Implement dev mode checking to report error in dev mode
+            //console.log(err)
             // Silence chrome headless error
         }
     
@@ -65,10 +69,70 @@ module.exports = function testFunction() {
                 tests.push(currentTest);
             }
         
-            resolve({
+            const json = JSON.stringify({
                 status: suitePassed ? 1 : 0,
                 tests,
             });
+
+            console.log('Tests have run sending report to database');
+            
+            const optionsForPostingReport = {
+                hostname: 'localhost',
+                port: 8080,
+                path: '/project2/batch',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Content-Length': Buffer.byteLength(json)
+                }
+            };
+
+            const postReportRequest = http.request(optionsForPostingReport, (res) => { 
+                if (res.statusCode === 201) {
+                    /**
+                     * The batch has been added to database now to format and send to frontend
+                     */
+
+                    const optionsForGettingTheStoredTests = {
+                        hostname: 'localhost',
+                        port: 8080,
+                        path: `/project2${res.headers.location}/tests`,
+                        method: 'GET'
+                    };
+
+                    let tests= '';
+                    const requestForTests = http.request(optionsForGettingTheStoredTests, (res) => {
+                        res.setEncoding('utf8');
+                        res.on('data', (chunk) => {
+                            tests += chunk;
+                        })
+                        
+                        res.on('end', () => {
+                            resolve({
+                                status: suitePassed ? 1 : 0,
+                                tests: JSON.parse(tests)
+                            });
+                        })
+                    });
+                    requestForTests.end();
+
+                    // Done sending to frontend
+                } else {
+                    console.log(res.statusCode);
+                    
+                    // Send any error straight to frontend
+                    reject('oops');
+                }
+            });
+
+            postReportRequest.on('error', (err) => {
+                // ? Need to check what data can be in the error, no sensitive data leaks
+                // Send any error straight to frontend
+                reject('yikes'); 
+            })
+
+            postReportRequest.write(json);
+            postReportRequest.end();
             return;
         } catch (err) {
             reject("Error parsing" + err);
