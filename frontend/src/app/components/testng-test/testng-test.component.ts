@@ -37,6 +37,7 @@ export class TestNGTestComponent implements OnInit {
      */
     ngOnInit() {
         this.selectColor = this.color.selectColor;
+        console.log(this.testService.batchResults);
         if (this.testService.batchResults) {
             this.testResults = this.testService.batchResults;
             this.loaded = true;
@@ -63,10 +64,17 @@ export class TestNGTestComponent implements OnInit {
         this.httpService.fetchTestData(uri).subscribe(
             (response) => {
                 const batchId = response;
-                console.log(batchId);
-                this.httpService.fetchTestData(this.uri.getBatchUri(batchId.batchId)).subscribe(
+                const nextURI = this.uri.getURIRoute('tests');
+                this.httpService.fetchTestData(nextURI).subscribe(
                     (testResponse: any) => {
-                        this.testResults = testResponse;
+                        this.testResults = {
+                            batchId: batchId.batchID,
+                            status: undefined,
+                            tests: []
+                        };
+                        this.testResults.tests = testResponse.filter((test) => test.batchID === batchId.batchID);
+                        const failures = this.testResults.tests.filter((test) => test.status === 0).length;
+                        this.testResults.status = failures === 0 ? 1 : 0;
                         this.loaded = true;
                     },
                     (error) => console.error(error)

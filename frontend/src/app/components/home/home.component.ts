@@ -55,7 +55,9 @@ export class HomeComponent implements OnInit {
      */
     // tslint:disable-next-line:use-life-cycle-interface
     ngOnDestroy() {
-        this.testService.batchResults = this.testResults;
+        if (this.testResults) {
+            this.testService.batchResults = this.testResults;
+        }
     }
 
 }
