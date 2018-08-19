@@ -39,7 +39,7 @@
     * Exampe: `thisIsSparta` -> `This Is Sparta`
 
 * `dates` uses the _date-fns/format_ function to convert a date object to text
-    * Usage `{{ someDate | dates }}
+    * Usage `{{ someDate | dates }}`
     * Example `2018-08-17T11:35:18Z` -> `Aug 17 2018, 07:35:18`
 
 * `passFail` takes the numeric passFail values and converts them to `Passed`, `Failed` or `Skipped` according to: 
