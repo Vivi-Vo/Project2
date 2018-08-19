@@ -13,6 +13,12 @@ export interface BatchResult {
     // startedAt: Date;
     // finishedAt: Date;
     // className: string;
+    batchId: number;
     status: number;
     tests: TestMethod[];
+}
+
+export interface BatchID {
+    batchID: number;
+    passFail: number;
 }

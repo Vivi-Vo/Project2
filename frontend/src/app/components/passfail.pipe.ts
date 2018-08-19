@@ -10,7 +10,8 @@ export class PassfailPipe implements PipeTransform {
      * according to its truthy value
      * @param value number
      */
-    transform(value: number): any {
+    transform(value: any): string {
+        value = parseInt(value, 10);
         if (value === 0) {
             return 'Failed';
         } else if (value === 1) {

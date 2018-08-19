@@ -4,6 +4,7 @@ import { TestService } from '../services/test-service.service';
 import { HttpService } from '../services/http.service';
 import { URIService } from '../services/uris.service';
 import { Response } from '@angular/http';
+import { ColorService } from '../services/color.service';
 
 
 @Component({
@@ -19,10 +20,13 @@ export class TestNGTestComponent implements OnInit {
     loaded = false;
     btnText = 'Show';
     testResults: BatchResult;
+    selectColor: Function;
+
     constructor(
         private testService: TestService,
         private httpService: HttpService,
-        private uri: URIService
+        private uri: URIService,
+        private color: ColorService
     ) {}
 
     /**
@@ -30,6 +34,7 @@ export class TestNGTestComponent implements OnInit {
      * if it exists, display the table, else get the most recent test
      */
     ngOnInit() {
+        this.selectColor = this.color.selectColor;
         if (this.testService.batchResults) {
             this.testResults = this.testService.batchResults;
             this.loaded = true;
@@ -48,10 +53,15 @@ export class TestNGTestComponent implements OnInit {
     }
 
     getMostRecentTest() {
-        this.httpService.getTestData(this.uri.URIs.batches).subscribe(
-            (response: Response) => {
-                const batchId = response.json();
-                this.httpService.getTestData(this.uri.getBatchUri(batchId.BatchId)).subscribe();
+        const uri = this.uri.getURIRoute('batches');
+        this.httpService.getTestData(uri).subscribe(
+            (response) => {
+                const batchId = response;
+                this.httpService.getTestData(this.uri.getBatchUri(batchId.BatchId)).subscribe(
+                    (testResponse: any) => {
+                        this.testResults = testResponse;
+                    },
+                );
             },
             (error) => {
                 console.error(error);

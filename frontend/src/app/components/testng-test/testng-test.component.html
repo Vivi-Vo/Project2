@@ -1,7 +1,7 @@
 <h3>TestNG Results</h3>
 <p *ngIf="loaded"
     class="pl-1 font-weight-bold text-light"
-    [ngStyle]="{ background: testResults.status == 1 ? 'green' : 'darkred' }">
+    [ngStyle]="{ background: selectColor(testResults.status) }">
     {{ testResults.status | passfail }}
 </p>
 <table class="table table-striped table-dark table-hover table-sm table-responsive" *ngIf="loaded">
@@ -22,7 +22,10 @@
                 <td>{{ method.duration_ms }} ms</td>
                 <td>{{ method.startTime | dates }}</td>
                 <td>{{ method.finishTime | dates }}</td>
-                <td [ngStyle]="{ background: method.status == 1 ? 'green' : 'darkred' }">{{ method.status |passfail }}</td>
+                <td
+                    [ngStyle]="{ background: selectColor(method.status) }">
+                    {{ method.status |passfail }}
+                </td>
             </tr>
             <tr>
                 <td *ngIf="method.exceptionClass != null" class="table-danger">{{ method.exceptionClass }}</td>

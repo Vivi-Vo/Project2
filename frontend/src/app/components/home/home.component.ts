@@ -37,12 +37,7 @@ export class HomeComponent implements OnInit {
      */
     onLoad() {
         this.loading = true;
-        let uri;
-        if (window.location.href === this.uri.ANGULAR_DEFAULT) {
-            uri = this.uri.URIs.runLocal;
-        } else {
-            uri = this.uri.URIs.run;
-        }
+        const uri = this.uri.getURIRoute('run');
         this.httpService.getTestData(uri).subscribe(
             (response: BatchResult) => {
                 this.testResults = response;
