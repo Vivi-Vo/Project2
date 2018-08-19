@@ -32,8 +32,14 @@
                 </td>
             </tr>
             <tr>
-                <td *ngIf="method.exceptionClass != null" class="table-danger">{{ method.exceptionClass }}</td>
-                <td *ngIf="method.exceptionClass != null" colspan="5" class="table-danger">
+                <td *ngIf="method.exceptionClass != null"
+                    [ngStyle]="{ background: selectColor(method.status) }">
+                    {{ method.exceptionClass }}
+                </td>
+                <td *ngIf="method.exceptionClass != null"
+                    colspan="5"
+                    [ngStyle]="{ background: selectColor(method.status) }">
+
                     <button class="btn"
                         (click)="toggleStackTrace(index)"
                         [ngClass]="themeService.theme === 'dark' ? ['btn-dark'] : ['btn-light']">
