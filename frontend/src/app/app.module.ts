@@ -22,11 +22,14 @@ import { HttpService } from './components/services/http.service';
 import { TestService } from './components/services/test-service.service';
 import { URIService } from './components/services/uris.service';
 import { ColorService } from './components/services/color.service';
+import { ThemeService } from './components/services/theme.service';
 
+// PIPES
 import { DatesPipe } from './components/dates.pipe';
 import { PassfailPipe } from './components/passfail.pipe';
 import { CamelToTitlePipe } from './components/camel-to-title.pipe';
 
+// DIRECTIVES
 import { StacktraceDirective } from './components/stacktrace.directive';
 
 @NgModule({
@@ -53,7 +56,8 @@ import { StacktraceDirective } from './components/stacktrace.directive';
         HttpService,
         TestService,
         URIService,
-        ColorService
+        ColorService,
+        ThemeService
     ],
     bootstrap: [AppComponent]
 })

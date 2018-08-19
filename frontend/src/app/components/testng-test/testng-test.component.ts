@@ -5,6 +5,7 @@ import { HttpService } from '../services/http.service';
 import { URIService } from '../services/uris.service';
 import { Response } from '@angular/http';
 import { ColorService } from '../services/color.service';
+import { ThemeService} from '../services/theme.service';
 
 
 @Component({
@@ -26,7 +27,8 @@ export class TestNGTestComponent implements OnInit {
         private testService: TestService,
         private httpService: HttpService,
         private uri: URIService,
-        private color: ColorService
+        private color: ColorService,
+        private themeService: ThemeService,
     ) {}
 
     /**
@@ -60,13 +62,20 @@ export class TestNGTestComponent implements OnInit {
                 this.httpService.getTestData(this.uri.getBatchUri(batchId.BatchId)).subscribe(
                     (testResponse: any) => {
                         this.testResults = testResponse;
+                        this.loaded = true;
                     },
+                    (error) => console.error(error)
                 );
             },
             (error) => {
                 console.error(error);
             }
         );
+    }
+
+    // tslint:disable-next-line:use-life-cycle-interface
+    ngOnDestroy(): void {
+        this.testService.batchResults = this.testResults;
     }
 
     /**

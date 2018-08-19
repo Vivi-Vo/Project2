@@ -5,7 +5,12 @@
             <p>Welcome to the AssignForce testing suite.  Behind the scenes we are using TestNG and Selenium Web Driver to run our tests.  Please click the button to initiate the test!  Please note, it may take some time for the tests to be complete.</p>
             <form>
                 <div class="form-group">
-                    <button class="btn btn-dark btn-lg" (click)="onLoad()">Test!</button>
+                    <button
+                        class="btn btn-lg"
+                        (click)="onLoad()"
+                        [ngClass]="themeService.theme === 'dark' ? ['btn-dark'] : ['btn-light']">
+                        Test!
+                    </button>
                 </div>
             </form>
         </div>

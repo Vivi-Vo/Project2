@@ -4,6 +4,7 @@ import { BatchResult, BatchID } from '../../batch-result';
 import { HttpService } from '../../services/http.service';
 import { URIService } from '../../services/uris.service';
 import { ColorService } from '../../services/color.service';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
     selector: 'app-batch',
@@ -23,7 +24,8 @@ export class BatchComponent implements OnInit {
     constructor(
         private httpService: HttpService,
         private uri: URIService,
-        private color: ColorService
+        private color: ColorService,
+        private themeService: ThemeService
     ) {}
 
     ngOnInit() {

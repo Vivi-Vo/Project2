@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ThemeService} from '../services/theme.service';
 
 @Component({
     selector: 'app-header',
@@ -9,8 +10,9 @@ export class HeaderComponent implements OnInit {
     private homeTitle = 'Revature Testing Suite';
     pageTitle = this.homeTitle;
     page = 'home';
+    theme = 'Dark';
 
-    constructor() {}
+    constructor(private themeService: ThemeService) {}
 
     ngOnInit() {}
 
@@ -31,8 +33,8 @@ export class HeaderComponent implements OnInit {
         }
     }
 
-}
-
-enum Pages {
-    HOME, TESTS
+    toggleTheme(): void {
+        this.theme = this.theme === 'Dark' ? 'Light' : 'Dark';
+        this.themeService.theme = this.theme.trim();
+    }
 }

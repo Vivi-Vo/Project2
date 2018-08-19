@@ -5,6 +5,7 @@ import { HttpService } from '../services/http.service';
 import { URIService } from '../services/uris.service';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
     selector: 'app-home',
@@ -25,7 +26,8 @@ export class HomeComponent implements OnInit {
         private router: Router,
         private testService: TestService,
         private sanitizer: DomSanitizer,
-        private uri: URIService
+        private uri: URIService,
+        private themeService: ThemeService
     ) {}
 
     ngOnInit() {}

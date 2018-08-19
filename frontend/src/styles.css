@@ -1,9 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
-body {
+/* body {
     background: slategray;
+} */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-
-.table-danger {
-    background: darkred;
+.row {
+    margin: 0;
+    padding: 0;
 }

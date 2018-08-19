@@ -17,7 +17,7 @@ describe('ColorService', () => {
     }));
 
     it('should pick yellow on 2', inject([ColorService], (service: ColorService) => {
-        expect(service.selectColor(2)).toBe('yellow');
+        expect(service.selectColor(2)).toBe('darkblue');
     }));
 
     it('should pick red on 0', inject([ColorService], (service: ColorService) => {
