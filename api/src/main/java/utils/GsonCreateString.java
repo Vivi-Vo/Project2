@@ -1,5 +1,6 @@
 package utils;
 import com.google.gson.Gson;
+import models.Batch;
 import models.TestNG;
 import java.util.ArrayList;
 
@@ -14,4 +15,22 @@ public class GsonCreateString
         if (records != null) return new Gson().toJson(records);
         return null;
     }//end createStringTestNG()
+
+    /** Creates JSON string of Batch records. */
+    public static String createStringBatch(ArrayList<Batch> records) {
+        if (records != null) return new Gson().toJson(records);
+        return null;
+    }//end createStringBatch()
+
+    /** Creates JSON string of a TestNG record. */
+    public static String createTest(TestNG record) {
+        if (record != null) return new Gson().toJson(record);
+        return null;
+    }//end createTest()
+
+    /** Creates JSON string of a TestNG record. */
+    public static String createBatch(Batch record) {
+        if (record != null) return new Gson().toJson(record);
+        return null;
+    }//end createBatch()
 }//end class GsonCreateString

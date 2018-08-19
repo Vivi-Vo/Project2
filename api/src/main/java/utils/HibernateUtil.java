@@ -2,11 +2,11 @@ package utils;
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+
 /** Util.HibernateUtil Class
  * @author Joshua Pressley
  * @version 1.0 */
-public class HibernateUtil
-{
+public class HibernateUtil {
     /** Logging object to record log4j messages.*/
     private static Logger log = Logger.getLogger(HibernateUtil.class);
     /** Session factory*/
