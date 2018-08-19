@@ -50,8 +50,12 @@ export class TestNGTestComponent implements OnInit {
      * @param index number
      */
     toggleStackTrace(index: number): void {
-        this.btnText = this.btnText === 'Show' ? 'Hide' : 'Show';
         this.testResults.tests[index].showStackTrace = !this.testResults.tests[index].showStackTrace;
+    }
+
+    toggleBtnText(index: number): string {
+        return this.testResults.tests[index].showStackTrace === true ?
+            'Hide' : 'Show';
     }
 
     getMostRecentTest() {

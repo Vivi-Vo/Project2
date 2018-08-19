@@ -28,7 +28,7 @@
                 <td>{{ method.finishTime | dates }}</td>
                 <td
                     [ngStyle]="{ background: selectColor(method.status) }">
-                    {{ method.status |passfail }}
+                    {{ method.status | passfail }}
                 </td>
             </tr>
             <tr>
@@ -43,7 +43,7 @@
                     <button class="btn"
                         (click)="toggleStackTrace(index)"
                         [ngClass]="themeService.theme === 'dark' ? ['btn-dark'] : ['btn-light']">
-                        {{ btnText }} Stack Trace
+                        {{ toggleBtnText(index) }} Stack Trace
                     </button>
                     <span class="font-weight-bold ml-1">Exception Message: {{ method.exceptionMessage }}</span>
                     <div *ngIf="method.showStackTrace">
