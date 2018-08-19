@@ -12,7 +12,7 @@ export enum Status {
  */
 export interface TestMethod {
     recordID: number;
-    BatchID: number;
+    batchID: number;
     InitiatedBy: string;
     status: number;
     signature: string;

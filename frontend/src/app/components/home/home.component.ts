@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { BatchResult } from '../batch-result';
 import { TestService } from '../services/test-service.service';
 import { HttpService } from '../services/http.service';
+import { URIService } from '../services/uris.service';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
     selector: 'app-home',
@@ -23,7 +25,9 @@ export class HomeComponent implements OnInit {
         private httpService: HttpService,
         private router: Router,
         private testService: TestService,
-        private sanitizer: DomSanitizer
+        private sanitizer: DomSanitizer,
+        private uri: URIService,
+        private themeService: ThemeService
     ) {}
 
     ngOnInit() {}
@@ -31,10 +35,12 @@ export class HomeComponent implements OnInit {
     /**
      * Hits the server for test result
      * Upon receipt, navigates to test route
+     * Note that if served locally on NG Serve, it defaults to localhost
      */
     onLoad() {
         this.loading = true;
-        this.httpService.getTestData('/run').subscribe(
+        const uri = this.uri.getURIRoute('run');
+        this.httpService.getTestData(uri).subscribe(
             (response: BatchResult) => {
                 this.testResults = response;
                 this.loading = false;

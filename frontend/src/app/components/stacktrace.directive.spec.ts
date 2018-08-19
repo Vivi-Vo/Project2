@@ -14,7 +14,7 @@ class TestComponent {
 describe('Directive: StackTrace', () => {
     let component: TestComponent;
     let fixture: ComponentFixture<TestComponent>;
-    let p: ElementRef;
+    let p: DebugElement;
 
     beforeEach(() => {
         TestBed.configureTestingModule({

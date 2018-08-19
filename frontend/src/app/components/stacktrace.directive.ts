@@ -9,7 +9,7 @@ import { Directive, Input, ElementRef, Renderer } from '@angular/core';
 export class StacktraceDirective {
 
     @Input() set appStacktrace(html: string) {
-        html = html.split(' at ').map((line, index) => {
+        html = html.split('\r\n\tat ').map((line, index) => {
             if (index > 0) {
                 return '<br>&emsp;at ' + line;
             } else {

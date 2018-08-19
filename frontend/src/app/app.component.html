@@ -1,3 +1,5 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+<div [ngStyle]="{ background: themeService.theme === 'dark' ? 'slategrey' : '#ccc' }">
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+</div>
 

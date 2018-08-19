@@ -32,4 +32,10 @@ export class HttpService {
             return response.json();
         }));
     }
+
+    fetchTestData(url: string): Observable<any> {
+        return this.http.get(url).pipe(map((response: Response) => {
+            return response.json();
+        }));
+    }
 }

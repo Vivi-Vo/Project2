@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { BatchResult } from '../batch-result';
 import { TestService } from '../services/test-service.service';
 import { HttpService } from '../services/http.service';
+import { URIService } from '../services/uris.service';
 import { Response } from '@angular/http';
+import { ColorService } from '../services/color.service';
+import { ThemeService} from '../services/theme.service';
 
 
 @Component({
@@ -18,17 +21,27 @@ export class TestNGTestComponent implements OnInit {
     loaded = false;
     btnText = 'Show';
     testResults: BatchResult;
-    constructor(private testService: TestService, private httpService: HttpService) {}
+    selectColor: Function;
+
+    constructor(
+        private testService: TestService,
+        private httpService: HttpService,
+        private uri: URIService,
+        private color: ColorService,
+        private themeService: ThemeService,
+    ) {}
 
     /**
      * Upon creation, check TestResult service
-     * if it exists, display the table
+     * if it exists, display the table, else get the most recent test
      */
     ngOnInit() {
+        this.selectColor = this.color.selectColor;
         if (this.testService.batchResults) {
             this.testResults = this.testService.batchResults;
             this.loaded = true;
-            // console.log(this.testResults);
+        } else {
+            this.getMostRecentTest();
         }
     }
 
@@ -37,8 +50,36 @@ export class TestNGTestComponent implements OnInit {
      * @param index number
      */
     toggleStackTrace(index: number): void {
-        this.btnText = this.btnText === 'Show' ? 'Hide' : 'Show';
         this.testResults.tests[index].showStackTrace = !this.testResults.tests[index].showStackTrace;
+    }
+
+    toggleBtnText(index: number): string {
+        return this.testResults.tests[index].showStackTrace === true ?
+            'Hide' : 'Show';
+    }
+
+    getMostRecentTest() {
+        const uri = this.uri.getURIRoute('batches');
+        this.httpService.getTestData(uri).subscribe(
+            (response) => {
+                const batchId = response;
+                this.httpService.getTestData(this.uri.getBatchUri(batchId.BatchId)).subscribe(
+                    (testResponse: any) => {
+                        this.testResults = testResponse;
+                        this.loaded = true;
+                    },
+                    (error) => console.error(error)
+                );
+            },
+            (error) => {
+                console.error(error);
+            }
+        );
+    }
+
+    // tslint:disable-next-line:use-life-cycle-interface
+    ngOnDestroy(): void {
+        this.testService.batchResults = this.testResults;
     }
 
     /**
