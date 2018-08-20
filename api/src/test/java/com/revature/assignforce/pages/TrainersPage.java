@@ -90,13 +90,7 @@ public class TrainersPage {
         }
         return false;
     }
-    public boolean addBuilding(){
-        return false;
-    }
-    public boolean editBuilding(){
-        return false;
-    }
-    
+  
 
     
 }
