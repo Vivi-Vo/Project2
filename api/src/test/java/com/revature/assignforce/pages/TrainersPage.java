@@ -3,26 +3,21 @@ package com.revature.assignforce.pages;
 import com.revature.util.WebDriverHelper;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 public class TrainersPage {
     private WebDriver driver;
-    private String tab;
+    private String trainerTab;
     private String addButton;
     private String first;
     private String last;
     private String email;
     private String submitButton;
-
+    private String navbar;
     private static final String pageIdentifier = "trainer";
 
     public TrainersPage(WebDriver d) throws IOException {
@@ -31,17 +26,17 @@ public class TrainersPage {
 		InputStream inputPropertyFile = null;
 		inputPropertyFile = new FileInputStream("src/test/resources/locator.properties"); 
 		props.load(inputPropertyFile);
-        this.tab = props.getProperty(pageIdentifier + "-tab");
+        this.trainerTab = props.getProperty("tab"+pageIdentifier);
         this.addButton= props.getProperty(pageIdentifier+"-addbtn");
         this.first = props.getProperty(pageIdentifier+"-firstname");
         this.last = props.getProperty(pageIdentifier+"-lastname");
         this.email = props.getProperty(pageIdentifier+"-email");
         this.submitButton=props.getProperty((pageIdentifier+"-submitbtn"));
+        this.navbar = props.getProperty("navbar");        
     }
     
-    
-	public WebElement getTab() {
-		return WebDriverHelper.waitUntilVisible(driver, tab);
+	public WebElement getTrainerTab() {
+		return WebDriverHelper.waitUntilVisible(driver, trainerTab);
     }
     
 	public WebElement getAddButton() {
@@ -58,10 +53,15 @@ public class TrainersPage {
 	}
 	public WebElement getSubmitButton() {
 		return WebDriverHelper.waitUntilVisible(driver, submitButton);
+    }
+    public WebElement getNavbar() {
+		return WebDriverHelper.waitUntilVisible(driver, navbar);
 	}
+
 	public boolean addTrainer() throws InterruptedException {
         Boolean added = false;
-        getTab().click();
+        getNavbar();
+        getTrainerTab().click();
         getAddButton().click();
         getFirst().sendKeys("Test");
         getLast().sendKeys("NPE");
@@ -73,24 +73,5 @@ public class TrainersPage {
         }
         return added;
     }
-    
-    public boolean addLocation() throws InterruptedException{
-    	driver.manage().window().maximize();
-        driver.findElement(By.xpath("//div[@id='mat-tab-label-0-2']")).click();
-        driver.findElement(By.xpath("//mat-icon[contains(text(),'add_location')]")).click();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS); 
-        driver.findElement(By.xpath("mat-input-34")).sendKeys("NPE");
-        driver.findElement(By.id("mat-input-35")).sendKeys("Null");
-        driver.findElement(By.id("mat-input-36")).sendKeys("State");
-        driver.findElement(By.xpath("//span[contains(text(),'Add')]")).click();
-        Thread.sleep(300);
-
-        if(driver.getPageSource().contains("NPE")){
-            return true;
-        }
-        return false;
-    }
-  
-
     
 }
